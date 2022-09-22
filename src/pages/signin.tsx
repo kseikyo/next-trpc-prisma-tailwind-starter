@@ -1,4 +1,4 @@
-import Page from 'components/Layouts/Page';
+import Page from '@/components/Layouts/Page';
 import { getSession, signIn } from 'next-auth/react';
 import { NextPageContext } from 'next';
 import { FieldError, SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';

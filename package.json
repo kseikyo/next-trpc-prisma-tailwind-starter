@@ -5,13 +5,14 @@
     "switch-org": "pscale org switch <org>",
     "start-shadow-db": "pscale connect <dbname> shadow --port 3310",
     "start-dev-db": "pscale connect <dbname> development --port 3309",
-    "start-db": "concurrently --kill-others-on-fail \"npm:start-shadow-db\" \"npm:start-dev-db\"",
-    "dev": "concurrently --kill-others-on-fail \"npm:start-shadow-db\" \"npm:start-dev-db\" \"next dev\"",
+    "start-db": "concurrently --kill-others-on-fail \"pnpm:start-shadow-db\" \"pnpm:start-dev-db\"",
+    "dev": "concurrently --kill-others-on-fail \"pnpm:start-shadow-db\" \"pnpm:start-dev-db\" \"next dev\"",
     "build": "next build",
     "start": "next start",
     "postinstall": "prisma generate",
     "pre-commit": "tsc --noEmit --incremental && lint-staged",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "cm": "cz"
   },
   "dependencies": {
     "@heroicons/react": "^1.0.6",
@@ -24,7 +25,9 @@
     "@trpc/server": "^9.24.0",
     "next": "^12.1.6",
     "next-auth": "^4.3.4",
+    "next-transpile-modules": "^9.0.0",
     "react": "^18.1.0",
+    "react-daisyui": "^2.4.1",
     "react-dom": "^18.1.0",
     "react-hook-form": "^7.31.3",
     "react-hot-toast": "^2.2.0",
@@ -43,7 +46,9 @@
     "@types/react-input-mask": "^3.0.1",
     "@typescript-eslint/eslint-plugin": "^5.27.0",
     "@typescript-eslint/parser": "^5.27.0",
+    "commitizen": "^4.2.5",
     "concurrently": "^7.2.1",
+    "cz-conventional-changelog": "^3.3.0",
     "daisyui": "^2.15.2",
     "eslint": "^8.16.0",
     "eslint-config-next": "^12.1.6",
@@ -67,5 +72,15 @@
   "lint-staged": {
     "*.js": "eslint --cache --fix",
     "*.md": "markdownlint -f"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && npx cz --hook || true"
+    }
   }
 }

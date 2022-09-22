@@ -1,7 +1,7 @@
-import Head from 'next/head';
-import Page from 'components/Layouts/Page';
+import Head from "next/head";
+import Page from "@/components/Layouts/Page";
 
-export default function Home () {
+export default function Home() {
   return (
     <Page>
       <Head>
